@@ -119,11 +119,11 @@ export default class FLDisplayObject extends FLEventDispatcher {
   }
 
   public set backgroundColor(value: string) {
-    this.css<string>('background-color', value);
+    this.setCSS('background-color', value);
   }
 
   public get backgroundColor(): string {
-    return this.css<string>('background-color') as string;
+    return this.getCSS('background-color');
   }
 
   public get x() {
@@ -159,10 +159,11 @@ export default class FLDisplayObject extends FLEventDispatcher {
     this._htmlElement.style.height = `${this._height}px`;
   }
 
-  public css<T>(prop: any, value?: T): void | T {
-    if (!value) {
-      return this._htmlElement.style[prop] as T;
-    }
-    this._htmlElement.style[prop] = value;
+  public setCSS(prop: string, value: any): void {
+    this._htmlElement.style.setProperty(prop, value);
+  }
+
+  public getCSS(prop: string): any {
+    return this._htmlElement.style.getPropertyValue(prop);
   }
 }
