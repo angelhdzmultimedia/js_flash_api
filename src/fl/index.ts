@@ -1,8 +1,8 @@
 import FLAlign from './Align';
-import FLDisplayObject from './DisplayObject';
-import FLSprite from './Sprite';
-import FLStage from './Stage';
-import FLTextField from './TextField';
+import FLDisplayObject from './display/DisplayObject';
+import FLSprite from './display/Sprite';
+import FLStage from './display/Stage';
+import FLTextField from './text/TextField';
 import FLColor from './Color';
 import FLButton from './controls/Button';
 import {

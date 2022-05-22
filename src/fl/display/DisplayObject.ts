@@ -1,8 +1,8 @@
-import FLEventDispatcher from './events/EventDispatcher';
-import FLAlign from './Align';
-import FLEvent from './events/Event';
-import FLMouseEvent from './events/MouseEvent';
-import FLColor from './Color';
+import FLEventDispatcher from '../events/EventDispatcher';
+import FLAlign from '../Align';
+import FLEvent from '../events/Event';
+import FLMouseEvent from '../events/MouseEvent';
+import FLColor from '../Color';
 
 export default class FLDisplayObject extends FLEventDispatcher {
   private _x: number = 0;

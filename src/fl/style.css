@@ -58,16 +58,13 @@ html {
 .__Fl-Button-border__:active {
   border-color: #4ce4ff;
   background-color: #1ba7ff;
+  color: white;
 }
 
 .__Fl-Button-active__ {
   background-color: #1ba7ff;
   border-color: gray;
-}
-
-.__Fl-Button-active__:active {
-  background-color: #1ba7ff;
-  border-color: #1ba7ff;
+  color: white;
 }
 
 .__Fl-Button-active__:hover {

@@ -1,5 +1,5 @@
-import FLColor from './Color';
-import FLDisplayObject from './DisplayObject';
+//import FLColor from '../Color';
+import FLDisplayObject from '../display/DisplayObject';
 
 export default class FLTextField extends FLDisplayObject {
   private _type: 'dynamic' | 'input' = 'dynamic';

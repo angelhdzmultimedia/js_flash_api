@@ -1,4 +1,4 @@
-import FLColor from './Color';
+import FLColor from '../Color';
 import FLDisplayObject from './DisplayObject';
 //import FLMouseEvent from './MouseEvent';
 

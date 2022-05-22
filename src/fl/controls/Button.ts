@@ -1,5 +1,5 @@
 import FLColor from '../Color';
-import FLDisplayObject from '../DisplayObject';
+import FLDisplayObject from '../display/DisplayObject';
 
 export default class FLButton extends FLDisplayObject {
   constructor() {
