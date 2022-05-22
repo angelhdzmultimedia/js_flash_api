@@ -3,7 +3,7 @@ html {
   margin: 0;
 }
 
-.__FlashAPI-reset-styles__ {
+.__FlashAPI-default-styles__ {
   position: absolute;
   width: auto;
   height: auto;
@@ -13,8 +13,17 @@ html {
   padding: 0px;
   cursor: default;
   user-select: none;
+
   background-color: transparent;
   border: none;
   outline: none;
-  display: flex;
+}
+
+.__FlashAPI-border-style__ {
+  border-radius: 6px;
+  border: 3px solid #1ba7ff;
+}
+
+.comments {
+  color: #2086c7;
 }

@@ -1,5 +1,6 @@
+import FLColor from './Color';
 import FLDisplayObject from './DisplayObject';
-import FLMouseEvent from './MouseEvent';
+//import FLMouseEvent from './MouseEvent';
 
 export default class FLStage extends FLDisplayObject {
   [x: string]: any;
@@ -13,7 +14,7 @@ export default class FLStage extends FLDisplayObject {
   public static init(
     width: number = 800,
     height: number = 600,
-    backgroundColor: string = 'black'
+    backgroundColor: FLColor = FLColor.BLACK
   ): FLStage {
     let instance: FLStage = this._instance!;
     if (instance === null || instance === undefined) {

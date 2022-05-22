@@ -1,7 +1,8 @@
-import FLEventDispatcher from './EventDispatcher';
+import FLEventDispatcher from './events/EventDispatcher';
 import FLAlign from './Align';
-import FLEvent from './Event';
-import FLMouseEvent from './MouseEvent';
+import FLEvent from './events/Event';
+import FLMouseEvent from './events/MouseEvent';
+import FLColor from './Color';
 
 export default class FLDisplayObject extends FLEventDispatcher {
   private _x: number = 0;
@@ -15,12 +16,31 @@ export default class FLDisplayObject extends FLEventDispatcher {
   private _deferredAlign: boolean = false;
   private _align: string = FLAlign.NONE;
   protected _htmlElement: HTMLElement;
+  private _visible: boolean = true;
+  private _buttonMode: boolean = false;
 
   constructor() {
     super();
     this._htmlElement = document.createElement(this.htmlElement());
-    this._htmlElement.classList.add('__FLashAPI-reset-styles__');
+    this._htmlElement.classList.add('__FlashAPI-default-styles__');
     this._addEventListeners();
+  }
+
+  public set buttonMode(value: boolean) {
+    this._buttonMode = value;
+    this.setCSS('cursor', this._buttonMode ? 'pointer' : 'default');
+  }
+
+  public get buttonMode(): boolean {
+    return this._buttonMode;
+  }
+
+  public get visible(): boolean {
+    return this._visible;
+  }
+  public set visible(value: boolean) {
+    this._visible = value;
+    this.setCSS('visibility', this._visible ? 'visible' : 'hidden');
   }
 
   _handleAlign() {
@@ -74,7 +94,7 @@ export default class FLDisplayObject extends FLEventDispatcher {
     this._handleAlign();
   }
 
-  private htmlElement(): string {
+  protected htmlElement(): string {
     return 'div';
   }
 
@@ -118,49 +138,55 @@ export default class FLDisplayObject extends FLEventDispatcher {
     });
   }
 
-  public set backgroundColor(value: string) {
+  public set backgroundColor(value: FLColor) {
     this.setCSS('background-color', value);
   }
 
-  public get backgroundColor(): string {
+  public get backgroundColor(): FLColor {
     return this.getCSS('background-color');
   }
 
-  public get x() {
+  public get x(): number {
     return this._x;
   }
-  get y() {
+
+  public get y(): number {
     return this._y;
   }
-  get width() {
+
+  public get width(): number {
     return this._width;
   }
-  get height() {
+
+  public get height(): number {
     return this._height;
   }
 
-  set x(value) {
+  public set x(value) {
     this._x = value;
-    this._htmlElement.style.left = `${this._x}px`;
+    this.setCSS('transform', `translate(${this._x}px, ${this._y}px)`);
   }
 
-  set y(value) {
+  public set y(value) {
     this._y = value;
-    this._htmlElement.style.top = `${this._y}px`;
+    this.setCSS('transform', `translate(${this._x}px, ${this._y}px)`);
   }
 
-  set width(value) {
+  public set width(value) {
     this._width = value;
-    this._htmlElement.style.width = `${this._width}px`;
+    this.setCSS('width', `${this._width}px`);
   }
 
-  set height(value) {
+  public set height(value) {
     this._height = value;
-    this._htmlElement.style.height = `${this._height}px`;
+    this.setCSS('height', `${this._height}px`);
   }
 
-  public setCSS(prop: string, value: any): void {
-    this._htmlElement.style.setProperty(prop, value);
+  public setCSS(prop: any, value: any): void {
+    this._htmlElement.style.setProperty(
+      prop,
+      value instanceof FLColor ? value.toHex() : value
+    );
   }
 
   public getCSS(prop: string): any {

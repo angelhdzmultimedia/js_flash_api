@@ -1,10 +1,9 @@
+import IFLEventDispatcher from './IEventDispatcher';
 import FLEvent from './Event';
 
-interface IFLEvent extends FLEvent {}
+type Listener = (event: FLEvent) => void;
 
-type Listener = (event: IFLEvent) => void;
-
-export default class FLEventDispatcher {
+export default class FLEventDispatcher implements IFLEventDispatcher {
   public listeners: { [key: string]: Listener[] } = {};
   constructor() {}
 
@@ -22,7 +21,7 @@ export default class FLEventDispatcher {
     }
   }
 
-  public dispatchEvent(event: IFLEvent) {
+  public dispatchEvent(event: FLEvent) {
     for (let i in this.listeners[event.type!]) {
       event.target = this;
       this.listeners[event.type!][+i].apply(this, [event]);

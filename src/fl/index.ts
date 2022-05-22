@@ -1,23 +1,37 @@
 import FLAlign from './Align';
 import FLDisplayObject from './DisplayObject';
-import FLEvent from './Event';
-import FLEventDispatcher from './EventDispatcher';
-import FLMouseEvent from './MouseEvent';
 import FLSprite from './Sprite';
 import FLStage from './Stage';
+import FLTextField from './TextField';
+import FLColor from './Color';
+import FLButton from './controls/Button';
+import {
+  FLEvent,
+  FLTimerEvent,
+  FLEventDispatcher,
+  FLMouseEvent,
+} from './events';
 
-const stage: FLStage = FLStage.init();
+import { FLalert, FLtrace } from './common';
 
-export const fl = {
-  Sprite: FLSprite,
-  DisplayObject: FLDisplayObject,
-  trace(...args: any[]) {
-    console.log.apply(this, [...args]);
-  },
-  MouseEvent: FLMouseEvent,
-  Align: FLAlign,
-  Event: FLEvent,
-  Stage: FLStage,
-  EventDispatcher: FLEventDispatcher,
-  stage,
-};
+import { FLTimer } from './utils';
+
+export { FLButton as Button };
+export { FLTimerEvent as TimerEvent };
+export { FLTimer as Timer };
+export { FLColor as Color };
+export { FLSprite as Sprite };
+export { FLEventDispatcher as EventDispatcher };
+export { FLEvent as Event };
+export { FLAlign as Align };
+export { FLMouseEvent as MouseEvent };
+export { FLDisplayObject as DisplayObject };
+export { FLStage as Stage };
+export { FLTextField as TextField };
+
+export { FLalert as alert };
+export { FLtrace as trace };
+
+const FLstage: FLStage = FLStage.init();
+
+export { FLstage as stage };
