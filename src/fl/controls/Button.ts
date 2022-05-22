@@ -10,12 +10,29 @@ export default class FLButton extends FLDisplayObject {
     this._setStyles();
     this.label = 'Label';
     this.buttonMode = true;
+    this.active = false;
+  }
+  private _active: boolean = false;
+
+  public set active(value: boolean) {
+    this._active = value;
+    if (this._active) {
+      this._htmlElement.classList.add('__Fl-Button-active__');
+    } else {
+      this._htmlElement.classList.remove('__Fl-Button-active__');
+    }
+  }
+
+  public get active() {
+    return this._active;
   }
 
   private _setStyles() {
-    this._htmlElement.classList.add('__FlashAPI-border-style__');
+    //this.backgroundColor = FLColor.WHITE;
+    this._htmlElement.classList.add('__Fl-Button__');
+    this._htmlElement.classList.add('__Fl-Button-border__');
     this.setCSS('font-weight', 'bold');
-    this.backgroundColor = FLColor.WHITE;
+
     // TO DO
     // Button states: UP, OVER, HITTEST?, DOWN
   }

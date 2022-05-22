@@ -35,6 +35,7 @@ delayTextField.x = 20;
 delayTextField.placeholder = 'Delay';
 
 const timerTextField = new fl.TextField();
+timerTextField.textColor = fl.Color.WHITE;
 timerTextField.y = 20;
 timerTextField.x = 20;
 timerTextField.text = 'Count: 0';
@@ -55,7 +56,7 @@ function onTimer(event: fl.TimerEvent) {
 function onTimerComplete(event: fl.TimerEvent) {
   fl.trace((event.target as fl.Timer).currentCount);
   startOrStopTimerButton.label = 'Start Timer';
-  startOrStopTimerButton.backgroundColor = fl.Color.WHITE;
+  startOrStopTimerButton.active = false;
 }
 
 startOrStopTimerButton.addEventListener(
@@ -64,7 +65,7 @@ startOrStopTimerButton.addEventListener(
     const button = event.target as fl.Button;
     if (button.label === 'Start Timer') {
       button.label = 'Stop Timer';
-      button.backgroundColor = fl.Color.AQUA;
+      button.active = true;
       timerTextField.text = 'Count: 0';
 
       const [delay, repeatCount] = [
@@ -72,13 +73,13 @@ startOrStopTimerButton.addEventListener(
         +repeatCountTextField.text,
       ];
 
-      timer = new fl.Timer(delay, repeatCount);
+      timer = new fl.Timer(delay || 1000, repeatCount || 0);
       timer.addEventListener(fl.TimerEvent.TIMER, onTimer);
       timer.addEventListener(fl.TimerEvent.TIMER_COMPLETE, onTimerComplete);
       timer.start();
     } else {
       button.label = 'Start Timer';
-      button.backgroundColor = fl.Color.WHITE;
+      button.active = false;
       timer!.removeEventListener(fl.TimerEvent.TIMER, onTimer);
       timer!.removeEventListener(fl.TimerEvent.TIMER_COMPLETE, onTimerComplete);
       timer?.stop();

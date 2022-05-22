@@ -9,17 +9,20 @@ export default class FLTextField extends FLDisplayObject {
     (this._htmlElement as HTMLInputElement).setAttribute('type', 'text');
     this.type = this._type;
     this._setStyles();
-    this.height = 20;
   }
 
   public set type(value: 'dynamic' | 'input') {
     this._type = value;
     if (this._type === 'dynamic') {
       this._htmlElement.setAttribute('readonly', 'true');
-      this.setCSS('cursor', 'not-allowed');
+      // this.setCSS('cursor', 'not-allowed');
+      this._htmlElement.classList.remove('__Fl-TextField-border__');
+      //this.backgroundColor = FLColor.TRANSPARENT;
     } else {
       this._htmlElement.removeAttribute('readonly');
-      this.setCSS('cursor', 'text');
+      // this.setCSS('cursor', 'text');
+      this._htmlElement.classList.add('__Fl-TextField-border__');
+      // this.backgroundColor = FLColor.WHITE;
     }
   }
 
@@ -36,8 +39,8 @@ export default class FLTextField extends FLDisplayObject {
   }
 
   private _setStyles() {
-    this._htmlElement.classList.add('__FlashAPI-border-style__');
-    this.backgroundColor = FLColor.WHITE;
+    this._htmlElement.classList.add('__Fl-TextField__');
+    this.setCSS('padding', '4px');
   }
 
   set text(value) {

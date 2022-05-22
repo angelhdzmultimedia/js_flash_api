@@ -22,7 +22,7 @@ export default class FLDisplayObject extends FLEventDispatcher {
   constructor() {
     super();
     this._htmlElement = document.createElement(this.htmlElement());
-    this._htmlElement.classList.add('__FlashAPI-default-styles__');
+    this._htmlElement.classList.add('__Fl-defaults__');
     this._addEventListeners();
   }
 
@@ -146,6 +146,14 @@ export default class FLDisplayObject extends FLEventDispatcher {
     return this.getCSS('background-color');
   }
 
+  public set textColor(value: FLColor) {
+    this.setCSS('color', value);
+  }
+
+  public get textColor(): FLColor {
+    return this.getCSS('color');
+  }
+
   public get x(): number {
     return this._x;
   }
@@ -185,7 +193,7 @@ export default class FLDisplayObject extends FLEventDispatcher {
   public setCSS(prop: any, value: any): void {
     this._htmlElement.style.setProperty(
       prop,
-      value instanceof FLColor ? value.toHex() : value
+      value instanceof FLColor ? value.toHEX() : value
     );
   }
 
